@@ -1,0 +1,56 @@
+﻿@model IEnumerable<ProyectoFinalDeporte.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm })
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageProduct)
+        </th>
+        <th>
+            @Html.ActionLink("Price", "Index", new { sortOrder = ViewBag.PriceSortParm })
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            <img alt="image" src="@Html.DisplayFor(modelItem => item.ImageProduct)" class="img-responsive img-rounded"/>
+                
+        </td>
+        <td>
+            
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ProductId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ProductId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ProductId }) |
+            @Html.ActionLink("Add to Cart", "Add", new { id = item.ProductId })
+        </td>
+    </tr>
+}
+
+</table>

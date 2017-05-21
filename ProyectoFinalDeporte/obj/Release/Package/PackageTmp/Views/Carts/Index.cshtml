@@ -1,0 +1,47 @@
+﻿@model IEnumerable<ProyectoFinalDeporte.Models.Cart>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Carrito de la compra</h2>
+
+
+<p>
+    @Html.ActionLink("Buy", "BuyAll")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Product.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product.Price)
+        </th>
+        <th></th>
+    </tr>
+@{double total = 0;}
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product.Price)
+        </td>
+        <td>
+            @Html.ActionLink("Delete", "Delete", new { id = item.CartID })
+        </td>
+    </tr>
+    { total += item.Product.Price; }
+       
+        
+}
+    <tr>
+        <td><strong>Total</strong></td>
+        <td><strong>@total</strong></td>
+        <td></td>
+    </tr>
+
+</table>
