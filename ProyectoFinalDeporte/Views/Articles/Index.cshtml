@@ -1,0 +1,54 @@
+﻿@model IEnumerable<ProyectoFinalDeporte.Models.Article>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Noticias</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+    @foreach (var item in Model)
+    {
+
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <a href="#" style="line-height: 34px">@Html.DisplayFor(modelItem => item.Title)</a>
+            <div class="btn-group" style="float:right;">
+                <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="glyphicon glyphicon-cog"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li>@Html.ActionLink("Edit", "Edit", new { id = item.ArticleId })</li>
+                    <li>@Html.ActionLink("Delete", "Delete", new { id = item.ArticleId })</li>
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="panel-body">
+            <div class="media">
+                <div class="media-body">
+                   @Html.DisplayFor(modelItem => item.Content)
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+        foreach (var comment in item.Comments)
+        {
+            <div class="panel panel-warning">
+                <div class="panel-body">
+                    @Html.DisplayFor(modelItem => comment.CommentDate)
+                </div>
+                <div class="panel-footer">@Html.DisplayFor(modelItem => comment.Content)</div>
+            </div>
+
+        }
+
+    }
